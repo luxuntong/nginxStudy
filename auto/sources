@@ -5,7 +5,7 @@
 
 CORE_MODULES="ngx_core_module ngx_errlog_module ngx_conf_module"
 
-CORE_INCS="src/core"
+CORE_INCS="src/core src/logInfo"
 
 CORE_DEPS="src/core/nginx.h \
            src/core/ngx_config.h \
@@ -37,7 +37,8 @@ CORE_DEPS="src/core/nginx.h \
            src/core/ngx_resolver.h \
            src/core/ngx_open_file_cache.h \
            src/core/ngx_crypt.h \
-           src/core/ngx_proxy_protocol.h"
+           src/core/ngx_proxy_protocol.h \
+		   src/logInfo/logInfo.h"
 
 
 CORE_SRCS="src/core/nginx.c \
@@ -69,7 +70,8 @@ CORE_SRCS="src/core/nginx.c \
            src/core/ngx_resolver.c \
            src/core/ngx_open_file_cache.c \
            src/core/ngx_crypt.c \
-           src/core/ngx_proxy_protocol.c"
+           src/core/ngx_proxy_protocol.c \
+		   src/logInfo/logInfo.c"
 
 
 REGEX_MODULE=ngx_regex_module
@@ -139,7 +141,7 @@ FILE_AIO_SRCS="src/os/unix/ngx_file_aio_read.c"
 LINUX_AIO_SRCS="src/os/unix/ngx_linux_aio_read.c"
 
 UNIX_INCS="$CORE_INCS $EVENT_INCS src/os/unix"
-
+echo $UNIX_INCS
 UNIX_DEPS="$CORE_DEPS $EVENT_DEPS \
             src/os/unix/ngx_time.h \
             src/os/unix/ngx_errno.h \
@@ -264,9 +266,7 @@ NGX_WIN32_RC="src/os/win32/nginx.rc"
 HTTP_MODULES="ngx_http_module \
               ngx_http_core_module \
               ngx_http_log_module \
-              ngx_http_upstream_module"
-
-HTTP_WRITE_FILTER_MODULE="ngx_http_write_filter_module"
+              ngx_http_upstream_module" HTTP_WRITE_FILTER_MODULE="ngx_http_write_filter_module"
 HTTP_HEADER_FILTER_MODULE="ngx_http_header_filter_module"
 
 HTTP_POSTPONE_FILTER_MODULE=ngx_http_postpone_filter_module
