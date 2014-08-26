@@ -205,7 +205,7 @@ main(int argc, char *const *argv)
     ngx_log_t        *log;
     ngx_cycle_t      *cycle, init_cycle;
     ngx_core_conf_t  *ccf;
-    LXTLOG("shanlihou");
+    LXTLOG("shasnlihou :%s  %d %s %s:", "123", "124", "125", "126");
     ngx_debug_init();
 
     if (ngx_strerror_init() != NGX_OK) {
