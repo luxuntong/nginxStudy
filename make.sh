@@ -1,4 +1,5 @@
 #!/bin/sh
+rm /tmp/echoLog
 ./configure
 make
 make install

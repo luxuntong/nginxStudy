@@ -205,7 +205,7 @@ main(int argc, char *const *argv)
     ngx_log_t        *log;
     ngx_cycle_t      *cycle, init_cycle;
     ngx_core_conf_t  *ccf;
-    logInfo("hello");
+    LXTLOG("shanlihou");
     ngx_debug_init();
 
     if (ngx_strerror_init() != NGX_OK) {
@@ -837,6 +837,7 @@ ngx_process_options(ngx_cycle_t *cycle)
 
     if (ngx_prefix) {
         len = ngx_strlen(ngx_prefix);
+        LXTLOG("shanlihou %s", ngx_prefix);
         p = ngx_prefix;
 
         if (len && !ngx_path_separator(p[len - 1])) {
