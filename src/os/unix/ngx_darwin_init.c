@@ -94,6 +94,7 @@ ngx_os_specific_init(ngx_log_t *log)
     ngx_uint_t  i;
 
     size = sizeof(ngx_darwin_kern_ostype);
+    LXTLOG("hello");
     if (sysctlbyname("kern.ostype", ngx_darwin_kern_ostype, &size, NULL, 0)
         == -1)
     {
@@ -111,7 +112,7 @@ ngx_os_specific_init(ngx_log_t *log)
             ngx_darwin_kern_ostype[size - 1] = '\0';
         }
     }
-
+    LXTLOG("kern_ostype = %s", ngx_darwin_kern_ostype);
     size = sizeof(ngx_darwin_kern_osrelease);
     if (sysctlbyname("kern.osrelease", ngx_darwin_kern_osrelease, &size,
                      NULL, 0)

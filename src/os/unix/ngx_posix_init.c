@@ -8,7 +8,7 @@
 #include <ngx_config.h>
 #include <ngx_core.h>
 #include <nginx.h>
-
+#include <logInfo.h>
 
 ngx_int_t   ngx_ncpu;
 ngx_int_t   ngx_max_sockets;
@@ -35,6 +35,7 @@ ngx_os_init(ngx_log_t *log)
     ngx_uint_t  n;
 
 #if (NGX_HAVE_OS_SPECIFIC_INIT)
+    LXTLOG("use os specific");
     if (ngx_os_specific_init(log) != NGX_OK) {
         return NGX_ERROR;
     }

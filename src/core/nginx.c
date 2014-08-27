@@ -305,7 +305,7 @@ main(int argc, char *const *argv)
         return 1;
     }
 
-    if (ngx_process_options(&init_cycle) != NGX_OK) {
+    if (ngx_process_options(&init_cycle) != NGX_OK) {//deal with the options that you typed in cmd
         return 1;
     }
 
@@ -834,10 +834,8 @@ ngx_process_options(ngx_cycle_t *cycle)
 {
     u_char  *p;
     size_t   len;
-
     if (ngx_prefix) {
         len = ngx_strlen(ngx_prefix);
-        LXTLOG("shanlihou %s", ngx_prefix);
         p = ngx_prefix;
 
         if (len && !ngx_path_separator(p[len - 1])) {
@@ -868,9 +866,8 @@ ngx_process_options(ngx_cycle_t *cycle)
             ngx_log_stderr(ngx_errno, "[emerg]: " ngx_getcwd_n " failed");
             return NGX_ERROR;
         }
-
         len = ngx_strlen(p);
-
+        LXTLOG("len of p:%d", len);
         p[len++] = '/';
 
         cycle->conf_prefix.len = len;
@@ -901,6 +898,7 @@ ngx_process_options(ngx_cycle_t *cycle)
     if (ngx_conf_full_name(cycle, &cycle->conf_file, 0) != NGX_OK) {
         return NGX_ERROR;
     }
+    LXTLOG("conf full name = %s", cycle->conf_file.data);
 
     for (p = cycle->conf_file.data + cycle->conf_file.len - 1;
          p > cycle->conf_file.data;
@@ -912,7 +910,6 @@ ngx_process_options(ngx_cycle_t *cycle)
             break;
         }
     }
-
     if (ngx_conf_params) {
         cycle->conf_param.len = ngx_strlen(ngx_conf_params);
         cycle->conf_param.data = ngx_conf_params;
