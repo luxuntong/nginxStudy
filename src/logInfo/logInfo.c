@@ -19,7 +19,7 @@ void logInfo(const char*file, int line, const char* fmt, ...)
 	double dval;
 #endif
 	u_char buf[1024];
-//s	u_char fileAndLine[256];
+	u_char fileAndLine[256];
 	int ret;
 	u_char *pLen;
 	ngx_spinlock(&lockLog, 1, 80);
@@ -32,11 +32,11 @@ void logInfo(const char*file, int line, const char* fmt, ...)
 		ngx_unlock(&lockLog);
 		return;
 	}
-//	pLen = ngx_snprintf(fileAndLine, 256, "[%s:%d]:", file, line);
-//	ret = write(fd, fileAndLine, pLen - fileAndLine);
+	pLen = ngx_snprintf(fileAndLine, 256, "[%s:%d]:", file, line);
+	ret = write(fd, fileAndLine, pLen - fileAndLine);
 	
 	va_start(ap, fmt);
-	pLen = ngx_snprintf(buf, 1024, fmt, ap);
+	pLen = ngx_vslprintf(buf, buf + 1024, fmt, ap);
 	ret = write(fd, buf, pLen - buf);
 	ret = write(fd, "\n", strlen("\n"));
 	ret = ret;

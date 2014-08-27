@@ -1,0 +1,5 @@
+*.o
+*.gitignore
+*.swp
+objs/*
+Makefile
