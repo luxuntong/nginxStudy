@@ -128,7 +128,8 @@ ngx_palloc(ngx_pool_t *pool, size_t size)
 
         do {
             m = ngx_align_ptr(p->d.last, NGX_ALIGNMENT);
-
+//shanlihou:the m = p-d.last align to NGX_ALIGNMENT(sizeof(unsigned long)), 
+//for example:sizeof(unsigned long) == 4, last = 1 ~ 4 m = 4 
             if ((size_t) (p->d.end - m) >= size) {
                 p->d.last = m + size;
 

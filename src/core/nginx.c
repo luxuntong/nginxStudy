@@ -308,7 +308,7 @@ main(int argc, char *const *argv)
     if (ngx_process_options(&init_cycle) != NGX_OK) {//deal with the options that you typed in cmd
         return 1;
     }
-
+/*save the infomation of this system*/
     if (ngx_os_init(log) != NGX_OK) {
         return 1;
     }
@@ -419,7 +419,8 @@ ngx_add_inherited_sockets(ngx_cycle_t *cycle)
     ngx_listening_t  *ls;
 
     inherited = (u_char *) getenv(NGINX_VAR);
-
+    if(inherited)
+        LXTLOG("NGINX_VAR = %s", inherited);
     if (inherited == NULL) {
         return NGX_OK;
     }
