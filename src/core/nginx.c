@@ -323,7 +323,7 @@ main(int argc, char *const *argv)
 
     if (ngx_add_inherited_sockets(&init_cycle) != NGX_OK) {
         return 1;
-    }
+    }//shanlihou :not execute so that no comment
 
     ngx_max_module = 0;
     for (i = 0; ngx_modules[i]; i++) {
